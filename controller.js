@@ -16,11 +16,4 @@ router.post("/", async (req, res) => {
     res.status(200).json({ data: validNotValid })
 })
 
-// app.post('/signup', async(req, res) => {
-//     const { email, firstName } = req.body
-//     const user = new User({ email, firstName })
-//     const ret = await user.save()
-//     res.json(ret)
-//   })
-
 module.exports = router;
