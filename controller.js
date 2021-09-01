@@ -11,7 +11,9 @@ router.post("/", async (req, res) => {
     console.log(req.body.data)
     const results = await validate.qrnumeric(req.body.data)
     console.log(results)
-    res.status(200).json({ data: results })
+    var validNotValid;
+    results.length === 0 ? validNotValid = true : validNotValid = false
+    res.status(200).json({ data: validNotValid })
 })
 
 // app.post('/signup', async(req, res) => {
