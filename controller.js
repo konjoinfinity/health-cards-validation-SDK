@@ -7,13 +7,18 @@ const { validate } = require('health-cards-validation-sdk/js/src/api.js')
 // Promise-wrapped array. For example you could check a JWS via:
 
 
-router.post("/", function (req, res) {
+router.post("/", async (req, res) => {
     console.log(req.body.data)
-    const shcData = req.body.data;
-    const results = validate.qrnumeric(shcData);
-    setTimeout(() => {
-        console.log(results);
-    }, 5000);
+    const results = await validate.qrnumeric(req.body.data)
+    console.log(results)
+    res.status(200).json({ data: results })
 })
+
+// app.post('/signup', async(req, res) => {
+//     const { email, firstName } = req.body
+//     const user = new User({ email, firstName })
+//     const ret = await user.save()
+//     res.json(ret)
+//   })
 
 module.exports = router;
