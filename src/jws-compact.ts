@@ -72,7 +72,7 @@ export async function validate(jws: JWS, index = ''): Promise<Log> {
 
         if (headerJson == null) {
             log.error(["Can't parse JWS header as JSON.", errString].join(''), ErrorCode.JWS_HEADER_ERROR);
-            
+
         } else {
             const headerKeys = Object.keys(headerJson);
             if (!headerKeys.includes('alg')) {
@@ -255,6 +255,7 @@ async function downloadAndImportKey(issuerURL: string, log: Log): Promise<keys.K
             }
             log.debug("Downloaded issuer key(s) : ");
             await verifyAndImportHealthCardIssuerKey(keySet, log, issuerURL);
+            console.log(keySet)
             return keySet;
         } catch (err) {
             log.error("Can't parse downloaded issuer JWK set: " + (err as Error).toString(), ErrorCode.ISSUER_KEY_DOWNLOAD_ERROR);
