@@ -254,6 +254,7 @@ async function downloadAndImportKey(issuerURL: string, log: Log): Promise<keys.K
                 throw "Failed to parse JSON KeySet schema";
             }
             log.debug("Downloaded issuer key(s) : ");
+
             await verifyAndImportHealthCardIssuerKey(keySet, log, issuerURL);
             console.log(keySet)
             return keySet;
