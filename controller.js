@@ -1,19 +1,24 @@
+const { checkDataType } = require("ajv/dist/compile/validate/dataType");
 const express = require("express");
 const router = express.Router();
-const { validate } = require('health-cards-validation-sdk/js/src/api.js')
+const { validate } = require('./health-cards-validation-sdk/js/src/api')
 
-// Then import src/api.js and call the right validate.<artifact-type> method, where <artifact-type> can be one of qrnumeric, 
-// healthcard, fhirhealthcard, jws, jwspayload, fhirbundle, or keyset. The validation results, if any, are returned in 
-// Promise-wrapped array. For example you could check a JWS via:
-
+// async function thisQR(shc){
+//     return await validate.qrnumeric(shc)
+// }
 
 router.post("/", async (req, res) => {
-    console.log(req.body.data)
+    if (req.body.data == undefined) {
+      console.log("No data posted")
+      res.status(400).json({data: "No data posted"})
+    } else {
+      console.log(req.body.data)
     const results = await validate.qrnumeric(req.body.data)
     console.log(results)
     var validNotValid;
-    results.length === 0 ? validNotValid = true : validNotValid = false
-    res.status(200).json({ data: validNotValid })
+      results.length === 0 ? validNotValid = true : validNotValid = false
+      res.status(200).json({ data: validNotValid })
+    }
 })
 
 module.exports = router;
