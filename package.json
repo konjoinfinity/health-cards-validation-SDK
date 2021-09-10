@@ -14,7 +14,8 @@
         "generate-test-data": "ts-node --files src/generate-test-data",
         "update-validator": "git pull && npm install && npm run build",
         "lint": "eslint --config .eslintrc.json --ext .ts ./src ./tests",
-        "prune-fhir-schema": "ts-node --files src/prune-fhir-schema.ts"
+        "prune-fhir-schema": "ts-node --files src/prune-fhir-schema.ts",
+        "start": "node index.js"
     },
     "author": "",
     "license": "MIT",
