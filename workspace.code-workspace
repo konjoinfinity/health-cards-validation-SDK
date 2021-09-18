@@ -1,0 +1,80 @@
+{
+	"folders": [
+		{
+			"name": "project4phoneapp",
+			"path": "../../projects/project4phoneapp"
+		},
+		{
+			"name": "konjoproject4",
+			"path": "../../projects/konjoproject4"
+		},
+		{
+			"name": "project4frontend",
+			"path": "../../projects/project4frontend"
+		},
+		{
+			"name": "konjo",
+			"path": "../../sandbox/konjo"
+		},
+		{
+			"name": "konjomusicfrontend",
+			"path": "../../labs/konjomusicfrontend"
+		},
+		{
+			"name": "konjomusic",
+			"path": "../../labs/konjomusic"
+		},
+		{
+			"name": "konjomulu",
+			"path": "../../sandbox/konjomulu/konjomulu"
+		},
+		{
+			"name": "konjokonjo",
+			"path": "../../lifesystem/konjokonjo/konjokonjo"
+		},
+		{
+			"name": "konjomulu",
+			"path": "../../lifesystem/konjomulu"
+		},
+		{
+			"name": "tester",
+			"path": "../../lifesystem/tester"
+		},
+		{
+			"name": "konjomulu",
+			"path": "../../konjomulu/konjomulu"
+		},
+		{
+			"name": "solar",
+			"path": "../../solar"
+		},
+		{
+			"name": "konjokonjo",
+			"path": "../../lifesystem/konjokonjo"
+		},
+		{
+			"name": "vacscanner",
+			"path": "../../vacscanner"
+		},
+		{
+			"name": "konjosolar",
+			"path": "../../konjosolar"
+		},
+		{
+			"name": "gatekeeper-demo-python",
+			"path": "../../gatekeeper-demo-python"
+		},
+		{
+			"name": "dashboard",
+			"path": "../../dashboard"
+		},
+		{
+			"name": "vaccineqr",
+			"path": "../../vaccineqr"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
