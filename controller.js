@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
     console.log(results)
     var validNotValid;
     results.length === 0 ? validNotValid = true : validNotValid = false
-    res.status(200).json({ data: validNotValid, message: validNotValid })
+    res.status(200).json({ data: validNotValid, message: results })
 })
 
 module.exports = router;
