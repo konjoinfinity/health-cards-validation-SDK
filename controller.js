@@ -20,6 +20,7 @@ router.get("/bitg", async (req, res) => {
     var price = 0
     await axios.get(url, options)
         .then(json => price = json.data.data[0].last)
+    console.log(price)
     res.status(200).json({ data: price })
 })
 
