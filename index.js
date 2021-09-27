@@ -13,6 +13,7 @@ app.use(parser.json());
 app.use(methodOverride("_method"));
 
 app.use("/", controller);
+app.use("/bitg", controller);
 
 
 app.set("port", process.env.PORT || 4000);
