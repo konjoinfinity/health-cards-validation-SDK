@@ -14,7 +14,6 @@ router.post("/", async (req, res) => {
     var validNotValid;
     results.length === 0 ? validNotValid = true : validNotValid = false
     res.status(200).json({ data: validNotValid, message: results })
-        .catch(err => console.error('error:' + err));
 })
 
 router.get("/bitg", async (req, res) => {
