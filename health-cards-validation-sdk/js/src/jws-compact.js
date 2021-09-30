@@ -1,16 +1,16 @@
 "use strict";
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
+    Object.defineProperty(o, k2, { enumerable: true, get: function () { return m[k]; } });
+}) : (function (o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function (o, v) {
     Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
+}) : function (o, v) {
     o["default"] = v;
 });
 var __importStar = (this && this.__importStar) || function (mod) {
@@ -30,8 +30,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function () { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -104,6 +104,7 @@ function validate(jws, index) {
                     try {
                         headerBytes = Buffer.from(parts[0], 'base64');
                         log.debug('JWS.header = ' + headerBytes.toString());
+                        console.log(headerBytes.toString())
                     }
                     catch (err) {
                         errString = err;
@@ -121,6 +122,7 @@ function validate(jws, index) {
                         }
                         else {
                             headerKeys = Object.keys(headerJson);
+                            console.log(headerKeys)
                             if (!headerKeys.includes('alg')) {
                                 log.error("JWS header missing 'alg' property.", error_1.ErrorCode.JWS_HEADER_ERROR);
                             }
@@ -141,6 +143,7 @@ function validate(jws, index) {
                     }
                     try {
                         sigBytes = Buffer.from(parts[2], 'base64');
+                        console.log(sigBytes)
                         log.debug('JWS.signature = ' + sigBytes.toString('hex'));
                     }
                     catch (err) {
@@ -166,6 +169,7 @@ function validate(jws, index) {
                     }
                     try {
                         b64DecodedPayloadBuffer = Buffer.from(rawPayload, 'base64');
+                        console.log(b64DecodedPayloadBuffer)
                     }
                     catch (err) {
                         log.error([
@@ -176,6 +180,7 @@ function validate(jws, index) {
                     if (b64DecodedPayloadBuffer) {
                         try {
                             inflatedPayload = pako_1.default.inflateRaw(b64DecodedPayloadBuffer, { to: 'string' });
+                            console.log(inflatedPayload)
                             log.info('JWS payload inflated');
                         }
                         catch (err) {
@@ -193,6 +198,7 @@ function validate(jws, index) {
                         }
                     }
                     payloadLog = jwsPayload.validate(inflatedPayload || b64DecodedPayloadString || rawPayload);
+                    console.log(payloadLog)
                     log.child.push(payloadLog);
                     // if we got a fatal error, quit here
                     if (payloadLog.get(logger_1.LogLevels.FATAL).length) {
@@ -261,6 +267,7 @@ function downloadAndImportKey(issuerURL, log) {
                 case 0:
                     jwkURL = issuerURL + '/.well-known/jwks.json';
                     log.info("Retrieving issuer key from " + jwkURL);
+                    console.log(jwkURL)
                     requestedOrigin = 'https://example.org';
                     _a.label = 1;
                 case 1:

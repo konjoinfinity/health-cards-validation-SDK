@@ -11,8 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function () { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -77,6 +77,7 @@ var PEMtoDER = function (pem) { return Buffer.from(pem.slice(1, -2).join(), "bas
 // validate a JWK certificate chain (x5c value)
 function validateX5c(x5c, log) {
     // we use OpenSSL to validate the certificate chain, first check if present
+    console.log(x5c)
     if (!utils_1.isOpensslAvailable()) {
         log.warn('OpenSSL not available to validate the X.509 certificate chain; skipping validation', error_1.ErrorCode.OPENSSL_NOT_AVAILABLE);
         return;
@@ -91,6 +92,7 @@ function validateX5c(x5c, log) {
     var issuerCert = '';
     var certFiles = x5c.map(function (cert, index, certs) {
         var certFileName = path_1.default.join(tmpDir, tmpFileName + '-' + index.toString() + PEM_CERT_FILE_EXT);
+        console.log(certFileName)
         if (index === 0) {
             // first cert in the x5c array is the leaf, issuer cert
             issuerCert = ' ' + certFileName;
@@ -131,6 +133,7 @@ function validateX5c(x5c, log) {
         //
         var logX5CError = function (field) { return log.error("Can't parse " + field + " in the issuer's cert (in x5c JWK value)", error_1.ErrorCode.INVALID_KEY_X5C); };
         var cert = x509_1.Certificate.fromPEM(Buffer.from(PEM_CERT_HEADER + '\n' + x5c[0] + '\n' + PEM_CERT_FOOTER));
+        console.log(cert)
         var sanExt = cert.getExtension('subjectAltName');
         var subjectAltName = '';
         // TODO (what if there are more than one SAN? return all of them, make sure the issuer URL is one of them?)
@@ -261,14 +264,14 @@ function verifyAndImportHealthCardIssuerKey(keySet, log, expectedSubjectAltName)
                                     log.error(keyName + ': ' + "'kid' missing in issuer key", error_1.ErrorCode.INVALID_KEY_SCHEMA);
                                     return [3 /*break*/, 7];
                                 case 5: return [4 /*yield*/, key.thumbprint('SHA-256')
-                                        .then(function (tpDigest) {
+                                    .then(function (tpDigest) {
                                         var thumbprint = node_jose_1.default.util.base64url.encode(tpDigest);
                                         if (key.kid !== thumbprint) {
                                             log.error(keyName + ': ' + "'kid' does not match thumbprint in issuer key. expected: "
                                                 + thumbprint + ", actual: " + key.kid, error_1.ErrorCode.INVALID_KEY_WRONG_KID);
                                         }
                                     })
-                                        .catch(function (err) {
+                                    .catch(function (err) {
                                         log.error(keyName + ': ' + "Failed to calculate issuer key thumbprint : " + err.message, error_1.ErrorCode.INVALID_KEY_UNKNOWN);
                                     })];
                                 case 6:

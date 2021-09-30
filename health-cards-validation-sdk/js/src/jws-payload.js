@@ -1,16 +1,16 @@
 "use strict";
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function (o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
+    Object.defineProperty(o, k2, { enumerable: true, get: function () { return m[k]; } });
+}) : (function (o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function (o, v) {
     Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
+}) : function (o, v) {
     o["default"] = v;
 });
 var __importStar = (this && this.__importStar) || function (mod) {
@@ -49,11 +49,13 @@ function validate(jwsPayloadText) {
         jwsPayloadText = jwsPayloadText.trim();
     }
     var jwsPayload = utils.parseJson(jwsPayloadText);
+    console.log(jwsPayload)
     if (!jwsPayload || typeof jwsPayload !== 'object') {
         return log.fatal("Failed to parse JWS.payload data as JSON.", error_1.ErrorCode.JSON_PARSE_ERROR);
     }
     log.debug("JWS Payload Contents:");
     log.debug(json_beautify_1.default(jwsPayload, null, 3, 100));
+    console.log(json_beautify_1.default(jwsPayload, null, 3, 100));
     // failures will be recorded in the log. we can continue processing.
     schema_1.validateSchema(smart_health_card_vc_schema_json_1.default, jwsPayload, log);
     // validate issuance date, if available - the schema check above will flag if missing/invalid
@@ -88,7 +90,9 @@ function validate(jwsPayloadText) {
     }
     log.info("JWS Payload validated");
     var fhirBundleJson = jwsPayload.vc.credentialSubject.fhirBundle;
+    console.log(fhirBundleJson)
     var fhirBundleText = JSON.stringify(fhirBundleJson);
+    console.log(fhirBundleText)
     log.child.push((fhirBundle.validate(fhirBundleText)));
     // does the FHIR bundle contain an immunization?
     var hasImmunization = (_e = fhirBundleJson === null || fhirBundleJson === void 0 ? void 0 : fhirBundleJson.entry) === null || _e === void 0 ? void 0 : _e.some(function (entry) { var _a; return ((_a = entry === null || entry === void 0 ? void 0 : entry.resource) === null || _a === void 0 ? void 0 : _a.resourceType) === 'Immunization'; });
